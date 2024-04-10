@@ -1,0 +1,51 @@
+name: CI for Ex6502
+
+on: push
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Code quality for Ex6502
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        otp: ["26.2.3"]
+        elixir: ["1.16.2-otp-26"]
+    env:
+      MIX_ENV: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ matrix.otp }}
+          elixir-version: ${{ matrix.elixir }}
+
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          key: deps-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock', '**/mix.exs') }}
+          path: ./deps
+
+      - name: Cache build
+        uses: actions/cache@v3
+        with:
+          key: build-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock', '**/mix.exs') }}
+          path: ./_build
+
+      - name: Cache priv
+        uses: actions/cache@v3
+        with:
+          key: priv-${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock', '**/mix.exs') }}
+          path: ./priv
+
+      - run: mix deps.get
+      - run: mix compile --warnings-as-errors
+      - run: mix format --check-formatted
+      - run: mix dialyzer --format github
+      - run: mix test
