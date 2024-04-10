@@ -13,7 +13,8 @@ defmodule Ex6502.MixProject do
       package: package(),
       description: description(),
       deps: deps(),
-      docs: docs()
+      docs: docs(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -56,6 +57,14 @@ defmodule Ex6502.MixProject do
       source_url: @source_url,
       main: "readme",
       extras: ["README.md", "CHANGELOG.md"]
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_local_path: "priv/plts/project.plt",
+      plt_core_path: "priv/plts/core.plt",
+      ignore_warnings: "dialyzer_ignore.exs"
     ]
   end
 end

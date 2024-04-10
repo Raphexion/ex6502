@@ -22,6 +22,9 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 ex6502-*.tar
 
+# Ignore dialyzer plt files
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
 
 # Temporary files for e.g. tests
 /tmp
