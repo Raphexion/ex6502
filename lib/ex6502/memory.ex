@@ -1,6 +1,6 @@
 defmodule Ex6502.Memory do
   alias Ex6502.Computer
-  use Bitwise
+  import Bitwise
 
   @max_size 0xFFFF
 

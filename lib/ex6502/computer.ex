@@ -1,6 +1,6 @@
 defmodule Ex6502.Computer do
   alias Ex6502.{Computer, CPU, Memory}
-  use Bitwise
+  import Bitwise
 
   defstruct break: false,
             cpu: %Ex6502.CPU{},

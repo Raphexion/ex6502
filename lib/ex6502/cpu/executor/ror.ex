@@ -33,7 +33,7 @@ defmodule Ex6502.CPU.Executor.ROR do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # ROR A accumulator $6A
   def execute(%Computer{data_bus: 0x6A} = c) do

@@ -29,8 +29,6 @@ defmodule Ex6502.CPU.Executor.CPX do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
-
   def execute(%Computer{} = c) do
     c
     |> do_execute()

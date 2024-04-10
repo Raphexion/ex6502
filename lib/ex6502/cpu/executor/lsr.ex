@@ -32,7 +32,7 @@ defmodule Ex6502.CPU.Executor.LSR do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # LSR A accumaltor $4A
   def execute(%Computer{data_bus: 0x4A} = c) do

@@ -1,7 +1,7 @@
 defmodule Ex6502.Disassembler do
   alias Ex6502.{Computer, Memory}
 
-  use Bitwise
+  import Bitwise
 
   def disassemble(%Computer{cpu: %{pc: pc}, memory: memory}) do
     case Memory.get(memory, pc, 3) do

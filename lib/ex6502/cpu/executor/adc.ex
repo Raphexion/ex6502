@@ -39,7 +39,7 @@ defmodule Ex6502.CPU.Executor.ADC do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   def execute(%Computer{} = c) do
     if CPU.flag(c, :d), do: raise(RuntimeError, "Decimal mode is not yet supported")

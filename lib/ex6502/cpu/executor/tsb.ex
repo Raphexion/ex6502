@@ -28,7 +28,7 @@ defmodule Ex6502.CPU.Executor.TSB do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # TSB $nnnn absolute $0C
   def execute(%Computer{data_bus: 0x0C} = c) do

@@ -34,12 +34,12 @@ defmodule Ex6502.CPU.Executor.EOR do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # EOR #$nn Immediate $49
   def execute(%Computer{data_bus: 0x49} = c) do
     with %Computer{data_bus: value} = c <- Computer.put_next_byte_on_data_bus(c),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], result)
@@ -50,7 +50,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x4D} = c) do
     with c <- Computer.put_absolute_address_on_bus(c),
          %Computer{data_bus: value} <- Memory.absolute(c),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -61,7 +61,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x5D} = c) do
     with c <- Computer.put_absolute_address_on_bus(c),
          %Computer{data_bus: value} <- Memory.absolute(c, c.cpu.x),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -72,7 +72,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x59} = c) do
     with c <- Computer.put_absolute_address_on_bus(c),
          %Computer{data_bus: value} <- Memory.absolute(c, c.cpu.y),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -83,7 +83,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x45} = c) do
     with c <- Computer.put_zero_page_on_address_bus(c),
          %Computer{data_bus: value} <- Memory.absolute(c),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -94,7 +94,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x55} = c) do
     with c <- Computer.put_zero_page_on_address_bus(c, c.cpu.x),
          %Computer{data_bus: value} <- Memory.absolute(c),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -105,7 +105,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x52} = c) do
     with c <- Computer.put_zero_page_on_address_bus(c),
          %Computer{data_bus: value} <- Memory.indirect(c),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -116,7 +116,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x41} = c) do
     with c <- Computer.put_zero_page_on_address_bus(c, c.cpu.x),
          %Computer{data_bus: value} <- Memory.indirect(c),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)
@@ -127,7 +127,7 @@ defmodule Ex6502.CPU.Executor.EOR do
   def execute(%Computer{data_bus: 0x51} = c) do
     with c <- Computer.put_zero_page_on_address_bus(c),
          %Computer{data_bus: value} <- Memory.indirect(c, c.cpu.y),
-         result <- value ^^^ c.cpu.a do
+         result <- bxor(value, c.cpu.a) do
       c
       |> CPU.set(:a, result)
       |> CPU.set_flags([:n, :z], :a)

@@ -32,7 +32,7 @@ defmodule Ex6502.CPU.Executor.ASL do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # ASL A $0A
   def execute(%Computer{data_bus: 0x0A} = c) do

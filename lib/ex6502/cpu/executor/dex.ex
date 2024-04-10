@@ -26,7 +26,7 @@ defmodule Ex6502.CPU.Executor.DEX do
 
   alias Ex6502.{Computer, CPU}
 
-  use Bitwise
+  import Bitwise
 
   # addressing       assembler    opc  bytes  cycles
   # implied          DEX           CA    1     2

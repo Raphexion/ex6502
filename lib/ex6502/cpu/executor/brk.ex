@@ -36,7 +36,7 @@ defmodule Ex6502.CPU.Executor.BRK do
 
   alias Ex6502.{Computer, CPU}
 
-  use Bitwise
+  import Bitwise
 
   def execute(%Computer{data_bus: 0x00} = c) do
     # flow from https://www.pagetable.com/?p=410

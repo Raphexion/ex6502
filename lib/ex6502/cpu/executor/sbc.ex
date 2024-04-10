@@ -45,7 +45,7 @@ defmodule Ex6502.CPU.Executor.SBC do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   def execute(%Computer{} = c) do
     c
@@ -73,7 +73,7 @@ defmodule Ex6502.CPU.Executor.SBC do
     # 7FH (+ 127,0) and 80H with C = 1 (i.e., ‐12810).
     #
     # see www.righto.com/2012/12/the-6502-overflow-flag-explained.html
-    |> CPU.set_flag(:v, (c.cpu.a ^^^ result &&& (255 - value) ^^^ result &&& 0x80) != 0)
+    |> CPU.set_flag(:v, (bxor(c.cpu.a, result) &&& bxor(255 - value, result) &&& 0x80) != 0)
     |> CPU.set_flags([:n, :z], :a)
   end
 

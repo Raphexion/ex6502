@@ -26,7 +26,7 @@ defmodule Ex6502.CPU.Executor.INY do
 
   alias Ex6502.{Computer, CPU}
 
-  use Bitwise
+  import Bitwise
 
   # addressing       assembler    opc  bytes  cycles
   # implied          INY           C8    1      2

@@ -26,7 +26,7 @@ defmodule Ex6502.CPU.Executor.INX do
 
   alias Ex6502.{Computer, CPU}
 
-  use Bitwise
+  import Bitwise
 
   # addressing       assembler    opc  bytes  cycles
   # implied          INX           E8    1      2

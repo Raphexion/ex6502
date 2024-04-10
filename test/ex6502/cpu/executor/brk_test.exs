@@ -6,7 +6,7 @@ defmodule Ex6502.CPU.Executor.BRKTest do
   alias Ex6502.{Computer, CPU, Memory}
   alias Ex6502.CPU.Stack
 
-  use Bitwise
+  import Bitwise
 
   setup do
     m =

@@ -26,8 +26,6 @@ defmodule Ex6502.CPU.Executor.BRA do
   alias Ex6502.{Computer, CPU}
   import CPU.Executor.Branching
 
-  use Bitwise
-
   # addressing       assembler    opc  bytes  cycles
   # relative         BRA $nnnn    80     2     3 tp
   def execute(%Computer{data_bus: 0x80} = c), do: branch(c, true)

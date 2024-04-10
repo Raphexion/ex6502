@@ -33,7 +33,7 @@ defmodule Ex6502.CPU.Executor.AND do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # AND #$nn Immediate $29
   def execute(%Computer{data_bus: 0x29} = c) do

@@ -30,7 +30,7 @@ defmodule Ex6502.CPU.Executor.DEC do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # This is a special mode that needs its own special function
   #

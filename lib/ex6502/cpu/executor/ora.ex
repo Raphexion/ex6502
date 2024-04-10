@@ -34,7 +34,7 @@ defmodule Ex6502.CPU.Executor.ORA do
 
   alias Ex6502.{Computer, CPU, Memory}
 
-  use Bitwise
+  import Bitwise
 
   # ORA #$nn Immediate $09
   def execute(%Computer{data_bus: 0x09} = c) do

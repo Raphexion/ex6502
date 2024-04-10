@@ -26,7 +26,7 @@ defmodule Ex6502.CPU do
   * `$FFFE` - IRQ
   """
 
-  use Bitwise
+  import Bitwise
 
   alias Ex6502.{Computer, CPU}
 
