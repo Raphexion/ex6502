@@ -14,11 +14,7 @@ defmodule Ex6502.Computer do
   @reset_vector 0xFFFC
 
   def init(opts \\ []) do
-    memory =
-      opts[:memory] ||
-        with {:ok, memory} <- Memory.init(0xFFFF) do
-          memory
-        end
+    memory = Keyword.get_lazy(opts, :memory, fn -> Memory.init(0xFFFF) end)
 
     %Computer{cpu: CPU.init(), memory: memory}
     |> reset()
